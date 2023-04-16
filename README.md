@@ -219,6 +219,7 @@ kerneladiutor是简单好用的安卓系统的内核管理软件，用来调整C
 ## 4.klipper安装环境配置 ##
 
 ssh登录进入debian系统后执行以下命令：
+只要很简单的命令：usermod -G 3003 root ．
 
 	sudo usermod -a -G aid_inet,aid_net_raw root
 
