@@ -6,17 +6,8 @@ then
   exit 1
 fi
 
-if ! [[ -e "./klippy-env" && -e "./moonraker-env" && -e "./fluidd" && -e "./.KlipperScreen-env" ]]
-then
-  echo "First use kiauh to install the klipper family!"
-  exit 1
-fi
 
-if [ ! -c "/dev/ttyACM0" ] 
-then
-  echo "Please connect your phone to the printer "
-  exit 1
-fi
+
 
 ### environment
 echo "Initializing environment variables"
