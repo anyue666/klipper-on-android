@@ -1,105 +1,3 @@
-# klipper-on-android
-
-**在android系统上运行klipper，moonraker，fluidd，KlipperScreen，一键脚本快速配置。**
-
-**Run klipper, moonraker, fluidd, KlipperScreen on android system, one-click script for quick configuration.**
-
-**The English version of the tutorial is here: [README_en.md](https://github.com/gaifeng8864/klipper-on-android/blob/main/README_en.md)**
-
-
-**视频教程在这里：**
-
-B站：
-
-[【保姆级教程】告别树莓派，安卓klipper全新安装方案+一键配置脚本，只需一点，从此告别安卓手机只能换脸盆的命运](https://www.bilibili.com/video/BV1BG4y1t7RR/?vd_source=7fb5d23ecaaec9c060d89fdde67b3d1b)
-
-YOUTUBE：
-
-[【教程】告别树莓派，安卓klipper全新安装方案+一键配置脚本](https://youtu.be/s1tdqg6ke4w)
-
-
-
-
-***站在巨人的肩膀上！！！***
-
-
-***感谢:***
-
-***klipper, moonraker 和 xterm 初始化脚本来自 @d4rk50ul1***
-
-***(https://github.com/d4rk50ul1/klipper-on-android)***
-
-***ttyACM0 初始化脚本来自 @CODERUS***
-
-***(https://gist.github.com/CODERUS/a5ec4a456f5b58186cbebb66a8542a2e)***
-
-
-
-
-**前言：**
-
-**特别说明：**
-本教程里的安装方案使用的安卓系统最好选择安卓5到安卓9之间的版本。低于安卓5系统需要使用低版本linuxdeploy，高于安卓9系统可能会有权限相关的兼容性问题。另外，如果遇到openssh自动启动失败（表现为无法使用ssh连接debian系统），这种情况一般是安卓内核与linuxdeploy兼容问题，需要更换不同内核版本的安卓系统（注意，是不同内核版本）。
-
-0.本教程虽尽量做到步骤全面和详细，但是因为涉及基本的linux系统使用和klipper配置，所以并不适合完全小白用户。不过，都已经准备使用安卓手机运行klipper了，相信这些已经不是问题。
-
-1.本教程中安卓系统必须root。因每种手机硬件和系统的root方法各有不同，网络上教程很多，这里不再赘述。
-
-2.本教程软硬件环境：
-
-  小米2S手机
-  
-  16G机身存储，2G运行内存
-		
-  运行基于android9的魔趣9.0操作系统
-		
-  系统已使用魔趣官方补丁获取root权限
-		
-  刷机及系统root参考官方教程：
-		
-  ROM下载与刷机：https://download.mokeedev.com/aries.html
-		
-  获取root权限：https://bbs.mokeedev.com/t/topic/6577
-		
-3.理论上，只要能root的安卓手机此教程都能适用，待测试。	
-	  
-4.理论上，在termux里安装proot容器后安装的debian系统也可以使用，待测试。
-
-5.打印机控制主板型号：MKS SGEN-L V1.0 ，主板内SD卡中已烧录klipper固件。
-	  
-	  
-**本教程特点:**
-
-1.使用一个单独的APP在图形界面下安装linux系统，配置系统自动重启，系统中文汉化等。方便管理和使用。
-
-2.klipper系统依旧使用流行的kiauh脚本进行安装，升级或卸载。手机KlipperScreen界面或者网页界面都可以进行升级操作。
-
-3.使用一键脚本对klipper全家桶进行快速配置，方便快捷。
-			
-4.结合我自己的使用经验，修改定制了klipper全家桶的基本配置文件，一些关键配置更加实用。
-           								
-5.安装好以后无任何报错，可单独控制klipper，moonraker等服务启动，重启，关闭。
-			
-6.使用体验与树莓派基本没有区别，包括使用输入整形与压力补偿，手机CPU温度显示，打印机主板固件SD卡在线升级等。
-			
-#######################################################################################################			  
-
-
-***安装过程较长，手机需要连接到充电器！！！！！！***
-
-***本教程假设：***
-
-***安卓手机已root ！！！！！！***
-
-***主板内SD卡中已烧录klipper固件：[klipper(MKS SGEN-L V1.0).bin](https://github.com/gaifeng8864/klipper-on-android/blob/main/klipper(MKS%20SGEN-L%20V1.0).bin?raw=true)***
-
-***（SD卡中的klipper固件需要根据主板型号进行编译，此链接中的固件只适用于MKS SGEN-L V1.0）***
-
-
-需要用的软件：
-
-手机端：
-
 XServer-XSDL-1.20.51.apk（必装） 下载链接：https://sourceforge.net/projects/libsdl-android/files/apk/XServer-XSDL/
     
 linuxdeploy-2.6.0-259.apk（必装） 下载链接：https://github.com/meefik/linuxdeploy/releases/download/2.6.0/linuxdeploy-2.6.0-259.apk
@@ -117,24 +15,7 @@ Xftp（选装，建议安装）：https://www.netsarang.com/en/xftp/
 
 
 
-## 0.安装XServer-XSDL ##
 
-XServer-XSDL安装比较简单，按系统提示直接下一步就可以了。
-
-注意：安装完成后需要在第一次启动的界面点击屏幕上方 “更改设备设置” 按钮进入设置界面，依次点击 “鼠标模拟”---“鼠标仿真模式”---“桌面版，无仿真”，然后下拉到最底下点击“完成”。否则触摸无法使用。
-
-如果错过了第一次启动的界面，关闭XServer-XSDL后台运行后再次启动XServer-XSDL即可。
-
-## 1.安装kerneladiutor ##
-
-高通处理器默认有个MPD功耗控制方案，默认情况下会关闭部分CPU核心来控制功耗。
-由此带来的最大的问题就是在debian系统里会发现4核心的处理器大多数情况下却只识别出2个核心。
-kerneladiutor是简单好用的安卓系统的内核管理软件，用来调整CPU和GPU的频率和性能。可以强制开启所有CPU核心，充分利用手机的性能。
-
-## 2.安装linuxdeploy ##
-
-根据系统提示安装apk文件，安装完成后打开软件点击主界面左上角“![三横杠](https://user-images.githubusercontent.com/16047447/201450191-fc8d09bc-7ae5-4e9a-97a2-a92c5fdf36c2.PNG)
-”打开软件设置：
 
 	屏幕常亮  （勾选）
 	
@@ -150,15 +31,6 @@ kerneladiutor是简单好用的安卓系统的内核管理软件，用来调整C
 
 	联网更新   （勾选）
 
-其他选项保持默认！！！！！！！！！！
-
-！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-
-
-## 3.安装debian系统 ##
-
-设置好后回到主界面，点击右下角“![滑动开关](https://user-images.githubusercontent.com/16047447/201450293-096d3977-1b77-435d-8106-bf95c27d6052.PNG)
-”打开linux系统安装配置。
 
 	发行版 （Debian）
 
@@ -195,26 +67,6 @@ kerneladiutor是简单好用的安卓系统的内核管理软件，用来调整C
 	图形界面设置 （取消勾选自动打开XServer-XSDL）（一键配置脚本里已经配置自动开启XServer-XSDL客户端，此处不需要勾选）
 
 	桌面环境 （XTerm）
-
-其他选项保持默认！！！！！！！！！！
-
-！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-
-配置完成后回到主界面
-
-点击右上角“![三竖点](https://user-images.githubusercontent.com/16047447/201450321-113c378f-88ec-4009-871f-0c76eabf3004.PNG)
-” 点击 “安装” （安装过程比较漫长，根据网络情况大概在5-15分钟）
-
-界面下方出现 "<<< deploy" 时说明安装完成
-
-点击主界面下方“停止”，出现"<<< stop" 再点击“启动”（这一步不能少，否则debian系统启动不了）
-
-系统启动完成后使用Xshell连接debian系统（IP地址显示在linuxdeploy软件主界面最上方，登录名和密码就是上面步骤里设置的，端口22，协议ssh）
-
-至此，debian系统安装完成！！！！！！！！！！！！！！！！
-
-！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
-
 
 ## 4.klipper安装环境配置 ##
 
