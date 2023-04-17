@@ -313,6 +313,25 @@ ssh登录进入debian系统后执行以下命令：
 
 ***注意：*** 如果手机硬件已正确连接到打印机控制主板，但是运行脚本时依旧提示 " **Please connect your phone to the printer** "。
      debian系统内执行以下命令查看设备识别状态：
+     
+     Install Octo4a from https://github.com/feelfreelinux/octo4a/releases
+运行Octo4a并让它安装OctoPrint（可选地在完成安装后点击停止按钮）。
+确保Octo4a看到您的打印机（它将在旁边列出一个复选框）.
+如果检测到，您的安卓设备中将出现一个提示，询问是否允许连接到您的打印机。
+Now you need to go back to Linux Deploy and edit the container settings:
+MOUNTS:
+Enable: yes
+Mount points: press on the "+" button
+源: /data/data/com.octo4a/files
+目标: /home/android/octo4a
+/home/android/octo4a/serialpipe is the serial port you need to use in your printer.cfg
+Make the serial device accessible to Klipper:
+
+     sudo chmod 777 /dev/ttyACM0
+# or 
+     sudo chmod 777 /dev/ttyUSB0
+# or 
+     sudo chmod 777 /home/android/octo4a/serialpipe
 
      ls -al /dev/
 
