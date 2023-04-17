@@ -220,6 +220,7 @@ kerneladiutor是简单好用的安卓系统的内核管理软件，用来调整C
 
 ssh登录进入debian系统后执行以下命令：
 只要很简单的命令：
+	
 	groupadd print3D
 	useradd -m print3D -g print3D -s /bin/bash -d /home/print3D
 	passwd print3D
