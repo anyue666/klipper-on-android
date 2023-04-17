@@ -304,7 +304,7 @@ ssh登录进入debian系统后执行以下命令：
 
 ###进入登录用户家目录
 
-	sudo wget https://raw.githubusercontent.com/gaifeng8864/klipper-on-android/main/configuration_klipper_family.sh
+	sudo wget https://raw.githubusercontent.com/anyue666/klipper-on-android/main/configuration_klipper_family.sh
 
 	bash configuration_klipper_family.sh
 
