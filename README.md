@@ -114,12 +114,6 @@ ssh登录进入debian系统后执行以下命令：
 ###国内kiauh脚本地址（与上面官方地址二选一即可）
 
 	./kiauh/kiauh.sh
-	
-###启动脚本开始安装klipper全家桶
-
-###需要安装klipper，moonraker，fluidd（一键脚本暂时不支持Mainsail配置），KlipperScreen 这4个组件。
-每安装完一个组件都会提示无法启动服务，这是安卓初始化系统与klipper全家桶服务启动方式不兼容的原因，不用管它，如果能启动起来就不用一键脚本去配置了。
-组件安装涉及部分编译过程，耗时较长，耐心等待。只要是每个脚本都能自动安装到最后，基本就没有问题。
 
 ## 6.klipper全家桶配置 ##
 
@@ -145,39 +139,23 @@ ssh登录进入debian系统后执行以下命令：
 
 	sudo wget -P /home/print3D/printer_data/config/  https://raw.githubusercontent.com/gaifeng8864/klipper-on-android/main/printer.cfg
 
-***注意：*** printer.cfg 这个配置文件需要根据自己的打印机控制主板型号进行参数更改。具体请参考各主板配置说明。
+
+     cd ~
+
+     sudo wget https://raw.githubusercontent.com/anyue666/klipper-on-android/main/configuration_klipper_family.sh
+
+     bash configuration_klipper_family.sh
 
 
-***！！！！！！将打印机主板上电启动，使用OTG线将手机和打印机主板连接！！！！！！***
-
-回到debian系统内执行如下命令：
-
- 	cd ~
-
-###进入登录用户家目录
-
-	sudo wget https://raw.githubusercontent.com/anyue666/klipper-on-android/main/configuration_klipper_family.sh
-
-	bash configuration_klipper_family.sh
-
-执行完毕后重启手机，没有问题的话klipper全家桶和XServer-XSDL会自动启动并连接到打印机，屏幕上会显示KlipperScreen经典界面。
-
-
-***注意：*** 如果手机硬件已正确连接到打印机控制主板，但是运行脚本时依旧提示 " **Please connect your phone to the printer** "。
-     debian系统内执行以下命令查看设备识别状态：
+     源: /data/data/com.octo4a/files
      
-     Install Octo4a from https://github.com/feelfreelinux/octo4a/releases
-运行Octo4a并让它安装OctoPrint（可选地在完成安装后点击停止按钮）。
-确保Octo4a看到您的打印机（它将在旁边列出一个复选框）.
-如果检测到，您的安卓设备中将出现一个提示，询问是否允许连接到您的打印机。
-Now you need to go back to Linux Deploy and edit the container settings:
-MOUNTS:
-Enable: yes
-Mount points: press on the "+" button
-源: /data/data/com.octo4a/files
-目标: /home/android/octo4a
-/home/android/octo4a/serialpipe is the serial port you need to use in your printer.cfg
-Make the serial device accessible to Klipper:
+     目标: /home/android/octo4a
+     
+     /home/android/octo4a/serialpipe
+     
+     is the serial port you need to use in your printer.cfg
+     
+     Make the serial device accessible to Klipper:
 
      sudo chmod 777 /dev/ttyACM0
 # or 
@@ -195,15 +173,7 @@ Make the serial device accessible to Klipper:
 	bash configuration_klipper_family.sh
 
 
-祝大家每一次3D打印都能成功！！！
 
-
-
-**备注：**
-
-**构建和刷写SD卡固件请参考：https://www.klipper3d.org/Installation.html**
-
-**SD卡固件在线更新请参考：https://www.klipper3d.org/SDCard_Updates.html**
 
 
 
