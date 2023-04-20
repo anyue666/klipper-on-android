@@ -80,7 +80,7 @@ sudo tee "$TTYFIX" <<EOF
 inotifywait -m /dev -e create |
   while read dir action file
   do
-    [ "\$file" = "ttyACM0" ] && chmod 777 /dev/ttyACM0
+    [ "\$file" = "ttyACM0" ] && chmod 777 /home/android/octo4a/serialpipe
   done
 EOF
 sudo chmod +x "$TTYFIX"
@@ -185,7 +185,7 @@ PIDFILE=/var/run/klipper.pid
 [ -r \$DEFAULTS_FILE ] && . \$DEFAULTS_FILE
 
 case "\$1" in
-start)  chmod 777 /dev/ttyACM0
+start)  chmod 777 /home/android/octo4a/serialpipe
         log_daemon_msg "Starting" \$NAME
         start-stop-daemon --start --quiet --exec \$KLIPPY_EXEC \\
 		                  --background --pidfile \$PIDFILE --make-pidfile \\
